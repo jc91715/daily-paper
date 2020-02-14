@@ -573,11 +573,13 @@
             copy_html() {
                 this.edit_state = true
                 localStorage.setItem('edit_state',JSON.stringify(this.edit_state?1:0))
+                this.$nextTick(function(){
+                    var content = document.getElementById('content1')
+                    if (this.copyToClipboard(content.innerHTML)) {
+                        alert('已复制进粘贴板，Ctrl+v 进行粘贴')
+                    }
+                })
 
-                var content = document.getElementById('content1')
-                if (this.copyToClipboard(content.innerHTML)) {
-                    alert('已复制进粘贴板，Ctrl+v 进行粘贴')
-                }
 
             },
             copyToClipboard(text) {
